@@ -1,3 +1,7 @@
+/* =========================================
+   CAREER SECTION — Two-column layout
+   ========================================= */
+
 .career-section {
   display: flex;
   flex-direction: column;
@@ -17,7 +21,7 @@
   line-height: 70px;
   font-weight: 400;
   text-align: center;
-  background: linear-gradient(0deg, #7f40ff, #ffffff);
+  background: linear-gradient(0deg, var(--accentColor), #ffffff);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -25,139 +29,336 @@
   margin-top: 50px;
   margin-bottom: 90px;
 }
+
 .career-section h2 > span {
   font-family: "Geist", sans-serif;
   font-weight: 300;
 }
+
+/* ── Two-column layout ── */
+.career-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  width: 100%;
+  max-width: 1400px;
+  align-items: start;
+}
+
+/* ── Column headings ── */
+.career-col-heading {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accentColor);
+  margin: 0 0 36px !important;
+  line-height: 1 !important;
+  -webkit-text-fill-color: var(--accentColor) !important;
+  background: none !important;
+}
+
+/* ── Left column: timeline ── */
 .career-info {
   position: relative;
   display: flex;
   flex-direction: column;
   margin: 0px auto;
 }
+
 .career-info-box {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 50px;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 40px;
+  padding-left: 28px;
 }
+
 .career-info-box p {
-  width: 40%;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 300;
   margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.7;
 }
+
 .career-info-in {
   display: flex;
-  width: 40%;
   justify-content: space-between;
-  gap: 50px;
+  align-items: flex-start;
+  gap: 20px;
 }
+
 .career-info h3 {
-  font-size: 48px;
+  font-size: 32px;
   margin: 0;
   font-weight: 500;
-  line-height: 45px;
+  line-height: 32px;
+  flex-shrink: 0;
+}
+
+/* Smaller date for ranges like "Jun 2025 — Aug 2025" */
+.career-date-sm {
+  font-size: 16px !important;
+  line-height: 20px !important;
+  font-weight: 400 !important;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ── Nested sub-entry (e.g. internship under university) ── */
+.career-sub-entry {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+}
+
+.career-sub-line {
+  width: 2px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--accentColor),
+    rgba(0, 168, 255, 0.15)
+  );
+  border-radius: 2px;
+  min-height: 100%;
+}
+
+.career-sub-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.career-sub-content .career-info-in {
+  gap: 14px;
+}
+
+.career-sub-content h4 {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.career-sub-content h5 {
+  font-size: 13px;
+  margin: 4px 0 0;
+}
+
+.career-sub-content p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.65;
+  margin: 0;
 }
 
 .career-info h4 {
-  font-size: 33px;
-  line-height: 30px;
-  letter-spacing: 0.8px;
-  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 0.4px;
+  font-weight: 600;
   margin: 0;
 }
+
 .career-info h5 {
   font-weight: 400;
   letter-spacing: 0.7px;
-  font-size: 20px;
+  font-size: 15px;
   text-transform: capitalize;
-  margin: 10px 0px;
+  margin: 6px 0px 0;
   color: var(--accentColor);
 }
+
+/* Timeline line */
 .career-timeline {
   position: absolute;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3px;
+  top: 0;
+  left: 0;
+  width: 2px;
   height: 100%;
   background-image: linear-gradient(
     to top,
-    #aa42ff 20%,
+    #00a8ff 20%,
     var(--accentColor) 50%,
     transparent 95%
   );
   max-height: 0%;
+  border-radius: 2px;
 }
+
 .career-dot {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
-  background-color: #aa42ff;
-  width: 10px;
-  height: 10px;
+  background-color: #00a8ff;
+  width: 8px;
+  height: 8px;
   border-radius: 50px;
-  box-shadow: 0px 0px 5px 2px #d29bff, 0px 0px 15px 8px #d097ff,
-    0px 0px 110px 20px #f2c0ff;
+  box-shadow: 0px 0px 5px 2px #00a8ff, 0px 0px 15px 8px rgba(0, 168, 255, 0.6),
+    0px 0px 110px 20px rgba(0, 168, 255, 0.3);
   animation: timeline 0.8s linear infinite forwards;
 }
 
 @keyframes timeline {
-  10%,
-  20%,
-  50%,
-  70%,
-  90% {
-    box-shadow: 0px 0px 5px 2px #d29bff;
+  10%, 20%, 50%, 70%, 90% {
+    box-shadow: 0px 0px 5px 2px #00a8ff;
   }
-  10%,
-  30%,
-  0%,
-  100%,
-  64%,
-  80% {
-    box-shadow: 0px 0px 5px 2px #d29bff, 0px 0px 15px 5px #d097ff,
-      0px 0px 110px 20px #f2c0ff;
+  10%, 30%, 0%, 100%, 64%, 80% {
+    box-shadow: 0px 0px 5px 2px #00a8ff, 0px 0px 15px 5px rgba(0, 168, 255, 0.6),
+      0px 0px 110px 20px rgba(0, 168, 255, 0.3);
   }
 }
-@keyframes timeline2 {
-  0% {
-    box-shadow: 0px 0px 5px 2px #d29bff;
-  }
-  100% {
-    box-shadow: 0px 0px 5px 2px #d29bff, 0px 0px 15px 5px #d097ff,
-      0px 0px 110px 20px #f2c0ff;
-  }
+
+/* ── Right column: Certification cards ── */
+.cert-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
+
+.cert-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 28px 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+}
+
+/* Radial glow */
+.cert-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 168, 255, 0.06),
+    transparent 50%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+/* Shimmer line at top */
+.cert-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 168, 255, 0.25),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.cert-card:hover {
+  border-color: rgba(0, 168, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(0, 168, 255, 0.05);
+}
+
+.cert-card:hover::before {
+  opacity: 1;
+}
+
+.cert-card:hover::after {
+  opacity: 1;
+}
+
+/* Badge */
+.cert-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accentColor);
+  background: rgba(0, 168, 255, 0.1);
+  border: 1px solid rgba(0, 168, 255, 0.15);
+  border-radius: 8px;
+  padding: 5px 14px;
+  margin-bottom: 16px;
+  white-space: nowrap;
+}
+
+.cert-card h4 {
+  font-family: "Geist", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  line-height: 1.35;
+  color: #fff;
+  letter-spacing: -0.2px;
+  transition: color 0.3s;
+}
+
+.cert-card:hover h4 {
+  color: var(--accentColor);
+}
+
+.cert-card p {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
 @media only screen and (max-width: 1400px) {
   .career-section h2 {
     font-size: 50px;
     line-height: 50px;
   }
+
   .career-info h4 {
-    font-size: 22px;
-    line-height: 24px;
-    width: 180px;
+    font-size: 19px;
+    line-height: 22px;
   }
+
   .career-info h5 {
-    font-size: 17px;
-  }
-  .career-info h3 {
-    font-size: 40px;
-  }
-  .career-info-box p {
     font-size: 14px;
   }
-  .career-info-in {
-    width: 45%;
-    gap: 20px;
+
+  .career-info h3 {
+    font-size: 26px;
+    line-height: 26px;
+  }
+
+  .career-date-sm {
+    font-size: 14px !important;
   }
 
   .career-info-box p {
-    width: 45%;
+    font-size: 13px;
+  }
+
+  .career-columns {
+    gap: 40px;
+  }
+
+  .career-sub-content h4 {
+    font-size: 16px;
+    line-height: 20px;
   }
 }
+
 @media only screen and (max-width: 1025px) {
   .career-section {
     padding: 70px 0px;
@@ -166,49 +367,79 @@
     margin-bottom: 0;
   }
 }
+
 @media only screen and (max-width: 900px) {
+  .career-columns {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
   .career-info-box {
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 70px;
+    margin-bottom: 35px;
+    padding-left: 24px;
   }
-  .career-info-in,
-  .career-info-box p {
-    width: 100%;
-    padding-left: 10%;
-    box-sizing: border-box;
+
+  .career-info-in {
+    flex-wrap: wrap;
   }
+
   .career-timeline {
     left: 0%;
   }
+
   .career-container {
     width: calc(100% - 25px);
   }
+
+  .cert-card {
+    padding: 22px 22px 20px;
+  }
+
+  .cert-card h4 {
+    font-size: 15px;
+  }
+
+  .cert-badge {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    white-space: normal;
+  }
 }
+
 @media only screen and (max-width: 600px) {
   .career-info {
     margin: 0;
   }
+
   .career-section h2 {
     width: 100%;
     font-size: 45px;
     line-height: 45px;
     margin-top: 0px;
   }
-  .career-info-in {
-    gap: 0px;
-  }
+
   .career-info h3 {
-    font-size: 33px;
+    font-size: 20px;
+    line-height: 20px;
   }
-  .career-info-in,
-  .career-info-box p {
-    padding-left: 5%;
+
+  .career-date-sm {
+    font-size: 13px !important;
+    line-height: 16px !important;
   }
+
+  .career-info-box {
+    padding-left: 20px;
+  }
+
+  .career-sub-content h4 {
+    font-size: 15px;
+    line-height: 18px;
+  }
+
   .career-section {
     padding-top: 90px;
     margin-top: -70px;
-
     align-items: start;
     place-items: inherit;
     justify-content: left;

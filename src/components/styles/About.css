@@ -1,71 +1,329 @@
+/* =========================================
+   ABOUT SECTION — full rebuild
+   ========================================= */
+
 .about-section {
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  place-items: center;
-  position: relative;
-  opacity: 1;
-  height: auto;
   width: var(--cWidth);
+  max-width: var(--cMaxWidth);
   margin: auto;
+  padding: 100px 0 80px;
+  position: relative;
 }
-.about-me {
-  padding: 50px 0px;
-  padding-bottom: 0;
-  width: 500px;
-  max-width: calc(100% - 15px);
-}
-.about-me h3 {
-  font-size: 25px;
+
+/* ── Section header ── */
+.about-eyebrow {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  letter-spacing: 7px;
-  font-weight: 400;
+  color: var(--accentColor);
+  margin-bottom: 16px;
+}
+
+.about-headline {
+  text-align: center;
+  font-family: "Geist", sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 56px;
+  letter-spacing: -1px;
+}
+
+.about-headline span {
   color: var(--accentColor);
 }
 
-.about-me p {
-  font-size: 33px;
-  font-weight: 600;
-  line-height: 36px;
-  letter-spacing: 1px;
+/* ── Card base ── */
+.ab-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
 }
 
-@media only screen and (min-width: 600px) {
-  .about-section {
-    justify-content: center;
+.ab-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 168, 255, 0.06),
+    transparent 50%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.ab-card:hover::before {
+  opacity: 1;
+}
+
+.ab-card:hover {
+  border-color: rgba(0, 168, 255, 0.22);
+}
+
+.ab-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--accentColor);
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+/* ── Top two-column row ── */
+.about-top-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 900px) {
+  .about-top-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }
-@media only screen and (min-width: 768px) {
-  .about-me {
-    width: 500px;
-    max-width: calc(100% - 70px);
-    transform: translateY(0%);
-  }
-  .about-section {
-    opacity: 1;
+
+/* Journey card */
+.ab-journey h3 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+  color: #fff;
+}
+
+.ab-journey p {
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.68);
+  margin: 0 0 14px;
+}
+
+.ab-journey p:last-child {
+  margin-bottom: 0;
+}
+
+.ab-journey p strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.ab-journey p em {
+  color: var(--accentColor);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.ab-journey .journey-philosophy {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.ab-journey .journey-philosophy span {
+  color: var(--accentColor);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Arsenal / Word cloud card */
+.ab-arsenal {
+  min-height: 300px;
+}
+
+.arsenal-cloud {
+  position: relative;
+  width: 100%;
+  height: 260px;
+}
+
+.arsenal-tag {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: "Geist", sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.25s, transform 0.25s, opacity 0.25s;
+  cursor: default;
+  will-change: transform;
+}
+
+.arsenal-tag:nth-child(5n+1) { animation: float-1 8s ease-in-out infinite alternate; }
+.arsenal-tag:nth-child(5n+2) { animation: float-2 10s ease-in-out infinite alternate; }
+.arsenal-tag:nth-child(5n+3) { animation: float-3 9s ease-in-out infinite alternate; }
+.arsenal-tag:nth-child(5n+4) { animation: float-4 11s ease-in-out infinite alternate; }
+.arsenal-tag:nth-child(5n+5) { animation: float-5 7s ease-in-out infinite alternate; }
+
+.arsenal-tag:hover {
+  color: #fff !important;
+  transform: scale(1.2) translateZ(0) !important;
+  animation-play-state: paused !important;
+  z-index: 10;
+}
+
+.arsenal-tag.accent {
+  color: var(--accentColor);
+}
+
+.arsenal-tag.lg  { font-size: 28px; }
+.arsenal-tag.md  { font-size: 18px; }
+.arsenal-tag.sm  { font-size: 13px; color: rgba(255,255,255,0.35); }
+
+@keyframes float-1 {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  100% { transform: translateY(-10px) translateX(6px) rotate(2deg); }
+}
+@keyframes float-2 {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  100% { transform: translateY(8px) translateX(-7px) rotate(-1.5deg); }
+}
+@keyframes float-3 {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  100% { transform: translateY(-7px) translateX(-8px) rotate(2.5deg); }
+}
+@keyframes float-4 {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  100% { transform: translateY(9px) translateX(8px) rotate(-1deg); }
+}
+@keyframes float-5 {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  100% { transform: translateY(-8px) translateX(5px) rotate(-2deg); }
+}
+
+/* ── Bottom info row ── */
+.about-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 600px) {
+  .about-bottom-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-@media only screen and (min-width: 1025px) {
-  .about-section {
-    width: var(--cWidth);
-    justify-content: right;
-    max-width: 1920px;
-    height: var(--vh);
-    padding: 0px;
-    opacity: 1;
-  }
-  .about-me {
-    padding: 0px;
-    width: 50%;
-  }
-  .about-me p {
-    font-size: 1.9vw;
-    line-height: 2.3vw;
+
+@media (min-width: 900px) {
+  .about-bottom-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
-@media only screen and (min-width: 1950px) {
-  .about-me p {
-    font-size: 2.5rem;
-    line-height: 2.7rem;
-  }
+
+/* Quote card */
+.ab-quote .quote-mark {
+  font-size: 52px;
+  line-height: 1;
+  color: var(--accentColor);
+  opacity: 0.5;
+  font-family: Georgia, serif;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.ab-quote p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.65);
+  font-style: italic;
+}
+
+/* Focus card */
+.ab-focus .focus-title {
+  font-family: "Geist", sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 8px 0 10px;
+  letter-spacing: -0.5px;
+}
+
+.ab-focus .focus-sub {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.5px;
+}
+
+/* Education card */
+.ab-edu .edu-title {
+  font-family: "Geist", sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 8px 0 10px;
+}
+
+.ab-edu .edu-sub {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.5px;
+}
+
+/* ── Status bar ── */
+.ab-status {
+  border-radius: 18px;
+  padding: 24px 36px;
+  background: rgba(0, 168, 255, 0.06);
+  border: 1px solid rgba(0, 168, 255, 0.18);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.status-dot-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #7af0a0;
+  box-shadow: 0 0 0 0 rgba(122, 240, 160, 0.6);
+  animation: statusPulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes statusPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(122,240,160,0.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(122,240,160,0); }
+  100% { box-shadow: 0 0 0 0 rgba(122,240,160,0); }
+}
+
+.status-dot-wrap .status-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #7af0a0;
+}
+
+.ab-status p {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.ab-status p a,
+.ab-status p span {
+  color: var(--accentColor);
+  font-weight: 600;
 }

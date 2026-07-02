@@ -1,92 +1,282 @@
+/* =========================================
+   CONTACT SECTION — Premium card layout
+   ========================================= */
+
 .contact-section {
+  width: var(--cWidth);
+  max-width: var(--cMaxWidth);
   margin: auto;
-  padding-bottom: 100px;
-  margin-top: 100px;
+  padding: 100px 0 40px;
+  position: relative;
 }
-.contact-section h3 {
-  font-size: 60px;
-  font-weight: 400;
+
+/* ── Section header ── */
+.contact-eyebrow {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  margin: 0;
+  color: var(--accentColor);
+  margin: 0 0 16px;
 }
-.contact-flex {
-  display: flex;
-  justify-content: space-between;
+
+.contact-headline {
+  text-align: center;
+  font-family: "Geist", sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 20px;
+  letter-spacing: -1px;
 }
-.contact-flex h4 {
-  font-weight: 500;
-  margin: 0;
-  opacity: 0.6;
-}
-.contact-box {
-  display: flex;
-  flex-direction: column;
-}
-.contact-flex p {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-a.contact-social {
-  font-size: 25px;
-  border-bottom: 1px solid #ccc;
-}
-.contact-box h2 {
-  font-weight: 400;
-  font-size: 23px;
-  margin: 0;
-}
-.contact-box h2 > span {
+
+.contact-headline span {
   color: var(--accentColor);
 }
-.contact-box h5 {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 20px;
+
+.contact-subtext {
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 480px;
+  margin: 0 auto 56px;
+}
+
+/* ── Card grid ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 60px;
+}
+
+/* ── Card ── */
+.contact-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 36px 32px 32px;
+  position: relative;
+  overflow: hidden;
   display: flex;
-  gap: 10px;
-  opacity: 0.5;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+  cursor: pointer;
 }
-@media only screen and (max-width: 1600px) {
-  .contact-section h3 {
-    font-size: 50px;
-  }
-  .contact-box h2 {
-    font-size: 20px;
-  }
-  a.contact-social {
-    font-size: 22px;
-  }
+
+/* Radial glow on hover */
+.contact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 168, 255, 0.07),
+    transparent 50%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
 }
-@media only screen and (max-width: 1300px) {
-  .contact-section h3 {
-    font-size: 40px;
-  }
-  .contact-box h2 {
-    font-size: 18px;
-  }
-  a.contact-social {
-    font-size: 20px;
-  }
-  .contact-flex p {
-    margin-top: 0px;
-  }
+
+/* Subtle shimmer line at top */
+.contact-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 168, 255, 0.3),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.4s;
 }
+
+.contact-card:hover {
+  border-color: rgba(0, 168, 255, 0.22);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 40px rgba(0, 168, 255, 0.06);
+  color: inherit;
+}
+
+.contact-card:hover::before {
+  opacity: 1;
+}
+
+.contact-card:hover::after {
+  opacity: 1;
+}
+
+/* ── Card icon ── */
+.contact-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(0, 168, 255, 0.08);
+  border: 1px solid rgba(0, 168, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--accentColor);
+  margin-bottom: 20px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.contact-card:hover .contact-card-icon {
+  background: rgba(0, 168, 255, 0.14);
+  transform: scale(1.05);
+}
+
+/* ── Card label ── */
+.contact-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--accentColor);
+  opacity: 0.7;
+}
+
+/* ── Card title ── */
+.contact-card-title {
+  font-family: "Geist", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 6px 0 4px;
+  letter-spacing: -0.3px;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+.contact-card:hover .contact-card-title {
+  color: var(--accentColor);
+}
+
+/* ── Card subtitle ── */
+.contact-card-subtitle {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Arrow indicator ── */
+.contact-card-arrow {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.3);
+  transition: background 0.3s, color 0.3s, transform 0.3s, border-color 0.3s;
+}
+
+.contact-card:hover .contact-card-arrow {
+  background: rgba(0, 168, 255, 0.12);
+  border-color: rgba(0, 168, 255, 0.2);
+  color: var(--accentColor);
+  transform: translate(3px, -3px);
+}
+
+/* ── Footer ── */
+.contact-footer {
+  text-align: center;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contact-footer-credit {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 8px;
+}
+
+.contact-footer-credit span {
+  color: var(--accentColor);
+  font-weight: 600;
+}
+
+.contact-footer-copy {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
 @media only screen and (max-width: 900px) {
-  .contact-flex {
-    flex-direction: column;
-    gap: 40px;
-  }
-  .contact-flex p {
-    margin-bottom: 0px;
-  }
-  .contact-flex h4 {
-    margin-top: 20px;
-  }
   .contact-section {
-    margin-top: 50px;
-    padding-bottom: 50px;
+    padding: 60px 0 30px;
   }
-  .contact-container {
-    width: calc(100% - 25px);
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .contact-card {
+    padding: 28px 24px 24px;
+  }
+
+  .contact-card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .contact-card-title {
+    font-size: 17px;
+  }
+
+  .contact-card-arrow {
+    top: 24px;
+    right: 24px;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .contact-subtext {
+    margin-bottom: 36px;
+    font-size: 14px;
+  }
+
+  .contact-headline {
+    margin-bottom: 14px;
+  }
+}
+
+@media only screen and (min-width: 901px) and (max-width: 1300px) {
+  .contact-card-title {
+    font-size: 18px;
   }
 }

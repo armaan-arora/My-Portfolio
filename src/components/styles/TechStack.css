@@ -1,0 +1,90 @@
+.techstack {
+  width: var(--cWidth);
+  margin: auto;
+  max-width: var(--cMaxWidth);
+  padding: 80px 0;
+}
+
+.techstack h2 {
+  font-size: 40px;
+  font-family: "Geist", sans-serif;
+  font-weight: 600;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+}
+
+.techstack h2 span {
+  color: var(--accentColor);
+}
+
+/* ── Scrolling marquee rows ── */
+.tech-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+  padding: 12px 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.tech-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  will-change: transform;
+}
+
+.tech-track.forward {
+  animation: scrollLeft 30s linear infinite;
+}
+
+.tech-track.reverse {
+  animation: scrollRight 30s linear infinite;
+}
+
+@keyframes scrollLeft {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* ── Individual tag ── */
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.85);
+  transition: background 0.25s, border-color 0.25s;
+  cursor: default;
+}
+
+.tech-pill:hover {
+  background: rgba(0, 168, 255, 0.15);
+  border-color: rgba(0, 168, 255, 0.5);
+  color: #fff;
+}
+
+.tech-pill .tech-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff6b00;
+  flex-shrink: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .techstack h2 {
+    font-size: 55px;
+  }
+}

@@ -7,6 +7,7 @@ const WhatIDo = () => {
   const setRef = (el: HTMLDivElement | null, index: number) => {
     containerRef.current[index] = el;
   };
+
   useEffect(() => {
     if (ScrollTrigger.isTouch) {
       containerRef.current.forEach((container) => {
@@ -24,8 +25,9 @@ const WhatIDo = () => {
       });
     };
   }, []);
+
   return (
-    <div className="whatIDO">
+    <div className="whatIDO" id="whatIDO">
       <div className="what-box">
         <h2 className="title">
           W<span className="hat-h2">HAT</span>
@@ -36,6 +38,7 @@ const WhatIDo = () => {
       </div>
       <div className="what-box">
         <div className="what-box-in">
+          {/* Vertical dashed line overlays */}
           <div className="what-border2">
             <svg width="100%">
               <line
@@ -43,7 +46,7 @@ const WhatIDo = () => {
                 y1="0"
                 x2="0"
                 y2="100%"
-                stroke="white"
+                stroke="rgba(0, 168, 255, 0.3)"
                 strokeWidth="2"
                 strokeDasharray="7,7"
               />
@@ -52,12 +55,14 @@ const WhatIDo = () => {
                 y1="0"
                 x2="100%"
                 y2="100%"
-                stroke="white"
+                stroke="rgba(0, 168, 255, 0.3)"
                 strokeWidth="2"
                 strokeDasharray="7,7"
               />
             </svg>
           </div>
+
+          {/* Card 1: AI Development */}
           <div
             className="what-content what-noTouch"
             ref={(el) => setRef(el, 0)}
@@ -69,7 +74,7 @@ const WhatIDo = () => {
                   y1="0"
                   x2="100%"
                   y2="0"
-                  stroke="white"
+                  stroke="rgba(0, 168, 255, 0.3)"
                   strokeWidth="2"
                   strokeDasharray="6,6"
                 />
@@ -78,7 +83,7 @@ const WhatIDo = () => {
                   y1="100%"
                   x2="100%"
                   y2="100%"
-                  stroke="white"
+                  stroke="rgba(0, 168, 255, 0.3)"
                   strokeWidth="2"
                   strokeDasharray="6,6"
                 />
@@ -87,28 +92,25 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
 
             <div className="what-content-in">
-              <h3>DEVELOP</h3>
-              <h4>Description</h4>
+              <h3>AI DEVELOPMENT</h3>
+              <h4>01 / WORKFLOW ORCHESTRATION</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae.
+                Building production-ready AI applications powered by LLMs, RAG pipelines, and autonomous AI agents.
               </p>
-              <h5>Skillset & tools</h5>
+              <h5>Skillset &amp; tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">JavaScript</div>
-                <div className="what-tags">TypeScript</div>
-                <div className="what-tags">Three.js</div>
-                <div className="what-tags">React</div>
-                <div className="what-tags">Css</div>
-                <div className="what-tags">Node.js</div>
-                <div className="what-tags">Next.js</div>
-                <div className="what-tags">Express.js</div>
-                <div className="what-tags">PHP</div>
-                <div className="what-tags">MySql</div>
+                <span className="what-tags">Python</span>
+                <span className="what-tags">LangChain</span>
+                <span className="what-tags">LangGraph</span>
+                <span className="what-tags">OpenAI API</span>
+                <span className="what-tags">JavaScript</span>
+                <span className="what-tags">React</span>
               </div>
               <div className="what-arrow"></div>
             </div>
           </div>
+
+          {/* Card 2: Data & Agents */}
           <div
             className="what-content what-noTouch"
             ref={(el) => setRef(el, 1)}
@@ -120,34 +122,71 @@ const WhatIDo = () => {
                   y1="100%"
                   x2="100%"
                   y2="100%"
-                  stroke="white"
+                  stroke="rgba(0, 168, 255, 0.3)"
                   strokeWidth="2"
                   strokeDasharray="6,6"
                 />
               </svg>
             </div>
             <div className="what-corner"></div>
+            
             <div className="what-content-in">
-              <h3>DESIGN</h3>
-              <h4>Description</h4>
+              <h3>DATA &amp; AGENTS</h3>
+              <h4>02 / KNOWLEDGE RETRIEVAL</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae
+                Architecting scalable AI systems combining intelligent retrieval, vector search, structured reasoning, and multi-agent systems.
               </p>
-              <h5>Skillset & tools</h5>
+              <h5>Skillset &amp; tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">Blender</div>
-                <div className="what-tags">Zbrush</div>
-                <div className="what-tags">UI Design</div>
-                <div className="what-tags">Motion</div>
-                <div className="what-tags">Rigging</div>
-                <div className="what-tags">3D Animation</div>
-                <div className="what-tags">Character Design</div>
-                <div className="what-tags">Modelling</div>
+                <span className="what-tags">Pinecone</span>
+                <span className="what-tags">ChromaDB</span>
+                <span className="what-tags">FAISS</span>
+                <span className="what-tags">Prompt Engineering</span>
+                <span className="what-tags">Multi-Agent Systems</span>
               </div>
               <div className="what-arrow"></div>
             </div>
           </div>
+
+          {/* Card 3: Backend & Deployment */}
+          <div
+            className="what-content what-noTouch"
+            ref={(el) => setRef(el, 2)}
+          >
+            <div className="what-border1">
+              <svg height="100%">
+                <line
+                  x1="0"
+                  y1="100%"
+                  x2="100%"
+                  y2="100%"
+                  stroke="rgba(0, 168, 255, 0.3)"
+                  strokeWidth="2"
+                  strokeDasharray="6,6"
+                />
+              </svg>
+            </div>
+            <div className="what-corner"></div>
+            
+            <div className="what-content-in">
+              <h3>SYSTEMS &amp; DEPLOY</h3>
+              <h4>03 / INFRASTRUCTURE</h4>
+              <p>
+                Designing highly reliable backends, implementing LLM observability, and setting up scalable container deployments.
+              </p>
+              <h5>Skillset &amp; tools</h5>
+              <div className="what-content-flex">
+                <span className="what-tags">FastAPI</span>
+                <span className="what-tags">Docker</span>
+                <span className="what-tags">LangSmith</span>
+                <span className="what-tags">PostgreSQL</span>
+                <span className="what-tags">Vercel</span>
+                <span className="what-tags">Streamlit</span>
+              </div>
+              <div className="what-arrow"></div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

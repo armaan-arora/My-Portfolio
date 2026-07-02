@@ -1,4 +1,4 @@
-import { lazy, PropsWithChildren, Suspense, useEffect, useState } from "react";
+import { useEffect } from "react";
 import About from "./About";
 import Career from "./Career";
 import Contact from "./Contact";
@@ -8,46 +8,49 @@ import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
+
 import setSplitText from "./utils/splitText";
+import { useLoading } from "../context/LoadingProvider";
+import { setProgress } from "./Loading";
 
-const TechStack = lazy(() => import("./TechStack"));
+import { setHtmlTimeline, setAllTimeline } from "./utils/GsapScroll";
 
-const MainContainer = ({ children }: PropsWithChildren) => {
-  const [isDesktopView, setIsDesktopView] = useState<boolean>(
-    window.innerWidth > 1024
-  );
+const MainContainer = () => {
+  const { setLoading } = useLoading();
 
   useEffect(() => {
+    // Trigger loading completion since 3D model is removed
+    const progress = setProgress(setLoading);
+    progress.loaded().then(() => {
+      // Trigger scroll animations after loader finishes
+      setHtmlTimeline();
+      setAllTimeline();
+    });
+
     const resizeHandler = () => {
       setSplitText();
-      setIsDesktopView(window.innerWidth > 1024);
     };
     resizeHandler();
     window.addEventListener("resize", resizeHandler);
     return () => {
       window.removeEventListener("resize", resizeHandler);
     };
-  }, [isDesktopView]);
+  }, []);
 
   return (
     <div className="container-main">
       <Cursor />
       <Navbar />
       <SocialIcons />
-      {isDesktopView && children}
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <div className="container-main">
-            <Landing>{!isDesktopView && children}</Landing>
+            <Landing />
             <About />
             <WhatIDo />
             <Career />
             <Work />
-            {isDesktopView && (
-              <Suspense fallback={<div>Loading....</div>}>
-                <TechStack />
-              </Suspense>
-            )}
+
             <Contact />
           </div>
         </div>
